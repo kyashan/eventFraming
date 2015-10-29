@@ -3,8 +3,6 @@
 describe('Function registration', function () {
 
 
-    // var Player = require('../../lib/jasmine_examples/Player');
-    // var Song = require('../../lib/jasmine_examples/Song');
     var evtFrm,
         firstKey,
         secondKey;
@@ -22,10 +20,6 @@ describe('Function registration', function () {
     it('Store object different than a function and retrieves an error', function () {
         var noFn = 'no-function';
         expect(evtFrm.register(noFn)).toEqual(jasmine.error);
-    });
-
-    it('', function() {
-        
     });
 
 
