@@ -1,4 +1,10 @@
-var eventFraming = (function(){
+/*
+ * EventFraming - Global event manager to trigger events within specific time range for better performance 
+ * https://github.com/kyashan
+ * (c) 2015 MIT License
+ */
+
+var eventFraming = (function() {
 
 	"use strict"
 
@@ -7,10 +13,10 @@ var eventFraming = (function(){
 		queue = [],
 		reserved = false,
 		index = 0,
-		timer = 600,
+		timer = 200, //Default
 		clear;
 
-	function Evt(key, fn){
+	function Evt(key, fn) {
 		var that = this;
 		this.index = key;
 		this.fn = fn;
@@ -32,14 +38,12 @@ var eventFraming = (function(){
 
 	function run(evt, onStart) {
 		if (queue.indexOf(evt.index) == -1) {
-			if (onStart) evt.fn(); //Così chiama la prima volta subito i metodi. Se lo tolgo, appena faccio l'azione chiama il metodo solo dopo il timer
+			if (onStart) evt.fn(); 
 			queue.unshift(evt.index);
 		}
-
 		if (reserved) return;
 		reserved = true;
 		clear = setTimeout(function(){
-			//Esegui tutte le funzioni in attesa e poi rimuovile
 			for (var i = queue.length - 1; i >= 0; i--) {
 				if (storage[queue[i]]) storage[queue[i]]();
 				queue.splice(i, 1);
@@ -48,7 +52,6 @@ var eventFraming = (function(){
 		}, timer);
 	}
 
-	//Registra la funzione nello storage
 	exp.register = function(fn) {
 		if (typeof fn !== 'function') {
 			console.error('Not a function');
@@ -61,16 +64,15 @@ var eventFraming = (function(){
 		unstore(key);
 	}
 
-	exp.setTimer = function(milliseconds){
+	exp.setTimer = function(milliseconds) {
 		timer = milliseconds;
 	}
 
-	exp.clear = function(){
+	exp.clear = function() {
 		clearTimeout(clear);
 		queue = [];
 		reserved = false;
 	}
-
 
 	return exp;
 
