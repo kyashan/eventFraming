@@ -1,3 +1,6 @@
+/**
+ * eventFraming test
+ */
 
 
 describe('Function registration', function () {
@@ -22,5 +25,36 @@ describe('Function registration', function () {
         expect(evtFrm.register(noFn)).toEqual(jasmine.error);
     });
 
+
+});
+
+describe('Function running', function () {
+
+    var evtFrm,
+        counter = 0,
+        timeToWait = 1000;
+
+    evtFrm = eventFraming;
+
+
+    function _fn()   {
+        counter++;
+    }
+
+    evtFrm.setTimer(timeToWait);
+
+    var fn = evtFrm.register(_fn);
+
+    beforeEach(function(done) {
+        fn();
+        setTimeout(function(){
+            // fn();
+            done();
+        }, timeToWait - 2);
+    });
+
+    it('Check if function trigger after first timoeut', function() { 
+        expect(counter).toBe(0);
+    });
 
 });

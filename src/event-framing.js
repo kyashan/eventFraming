@@ -13,7 +13,7 @@ var eventFraming = (function() {
 		queue = [],
 		reserved = false,
 		index = 0,
-		timer = 200, //Default
+		timer = 200,
 		clear;
 
 	function Evt(key, fn) {
@@ -28,7 +28,6 @@ var eventFraming = (function() {
 	function store(fn) {
 		index++;
 		storage[index] = fn;
-		console.log(storage);
 		return new Evt(index, fn);
 	}
 
@@ -65,6 +64,9 @@ var eventFraming = (function() {
 	}
 
 	exp.setTimer = function(milliseconds) {
+		if (typeof milliseconds !== 'number') {
+			return console.error('Not a number');
+		}
 		timer = milliseconds;
 	}
 
