@@ -47,11 +47,6 @@ Default value: `200`
 Register a function to eventFraming service. It returns a new function which will automatically fire within the global timer.
 <br/><br/>
 
-#### `eventFraming.unregister(fn)`
-
-Unregister a function from eventFraming service.
-<br/><br/>
-
 #### `eventFraming.clear()`
 
 Cancel the next eventFraming cycle.
