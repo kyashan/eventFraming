@@ -57,6 +57,20 @@ Unregister a function from eventFraming service.
 Cancel the next eventFraming cycle.
 <br/><br/>
 
+#### Additional option
+Returned function from `eventFraming.register(fn)` accepts a boolean parameter in case you want the function to fires also at the beginning of time range.<br/>
+Default value: `false`
+```javascript
+
+//Register the function you want to frame.
+var framedFn = eventFraming.register(fn);
+
+//Fire the function also at the beginning of timer.
+//In this case: FUNCTION FIRE ----- timer pause ------ FUNCTION FIRE AGAIN
+framedFn(true);
+```
+
+
 ## License
 
 MIT
