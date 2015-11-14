@@ -31,10 +31,6 @@ var eventFraming = (function() {
 		return new Evt(index, fn);
 	}
 
-	function unstore(i) {
-		delete storage[i];
-	}
-
 	function run(evt, onStart) {
 		if (queue.indexOf(evt.index) == -1) {
 			if (onStart) evt.fn(); 
@@ -57,10 +53,6 @@ var eventFraming = (function() {
 		} else {
 			return store(fn);
 		}
-	}
-
-	exp.unregister = function(key) {
-		unstore(key);
 	}
 
 	exp.setTimer = function(milliseconds) {
