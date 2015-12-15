@@ -53,7 +53,7 @@ Cancel the next eventFraming cycle.
 <br/><br/>
 
 #### Additional option
-Returned function from `eventFraming.register(fn)` accepts a boolean parameter in case you want the function to fires also at the beginning of time range.<br/>
+Returned function from `eventFraming.register(fn)` accepts a boolean parameter in case you want the function to fire also at the beginning of time range.<br/>
 Default value: `false`
 ```javascript
 
